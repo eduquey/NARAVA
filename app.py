@@ -1,6 +1,6 @@
 import streamlit as st
+import requests
 import base64
-import os
 
 # Configuración de la página con estilo profesional
 st.set_page_config(
@@ -10,23 +10,27 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- UTILIDADES PARA IMÁGENES (OPTIMIZADAS PARA GITHUB) ---
-def get_image_base64(filename):
+# --- UTILIDADES PARA IMÁGENES (OPTIMIZADAS PARA GITHUB RAW) ---
+def get_image_base64_from_url(url):
     """
-    Busca la imagen en la carpeta raíz del proyecto en GitHub.
-    Prueba con extensiones comunes (.png, .jpg, .jpeg).
+    Descarga una imagen desde una URL de GitHub Raw y la convierte a base64.
     """
-    possible_extensions = [".png", ".jpg", ".jpeg"]
-    for ext in possible_extensions:
-        path = f"{filename}{ext}"
-        if os.path.exists(path):
-            with open(path, "rb") as f:
-                return base64.b64encode(f.read()).decode()
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            return base64.b64encode(response.content).decode()
+    except Exception:
+        return None
     return None
 
-# Intentar cargar las imágenes desde el repositorio
-flor_b64 = get_image_base64("flor")
-logo_b64 = get_image_base64("logo")
+# URLs de los archivos en tu repositorio GitHub (formato Raw)
+# Basado en el repositorio: https://github.com/eduquey/NARAVA
+URL_FLOR = "https://raw.githubusercontent.com/eduquey/NARAVA/main/flor.png"
+URL_LOGO = "https://raw.githubusercontent.com/eduquey/NARAVA/main/logo.png"
+
+# Intentar cargar las imágenes directamente desde GitHub
+flor_b64 = get_image_base64_from_url(URL_FLOR)
+logo_b64 = get_image_base64_from_url(URL_LOGO)
 
 # --- CSS PROFESIONAL DE ALTA GAMA ---
 st.markdown("""
