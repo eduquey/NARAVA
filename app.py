@@ -1,8 +1,3 @@
-# --- COMANDOS PARA EJECUTAR EN VS CODE ---
-# 1. Instalar Streamlit: python -m pip install streamlit
-# 2. Ejecutar la Web:    python -m streamlit run app.py
-# -----------------------------------------------------------------------
-
 import streamlit as st
 import base64
 import os
@@ -15,27 +10,23 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- UTILIDADES PARA IMÁGENES ---
-def find_image(name):
-    base_folder = r"C:\Users\LENOVO\OneDrive\Escritorio\NARAVA\Proyecto_Narava"
-    paths = [
-        os.path.join(base_folder, f"{name}.png"),
-        os.path.join(base_folder, f"{name}.jpg"),
-        os.path.join(base_folder, "logo.png") if name == "logo" else None
-    ]
-    for path in paths:
-        if path and os.path.exists(path):
-            return path
+# --- UTILIDADES PARA IMÁGENES (OPTIMIZADAS PARA GITHUB) ---
+def get_image_base64(filename):
+    """
+    Busca la imagen en la carpeta raíz del proyecto en GitHub.
+    Prueba con extensiones comunes (.png, .jpg, .jpeg).
+    """
+    possible_extensions = [".png", ".jpg", ".jpeg"]
+    for ext in possible_extensions:
+        path = f"{filename}{ext}"
+        if os.path.exists(path):
+            with open(path, "rb") as f:
+                return base64.b64encode(f.read()).decode()
     return None
 
-def get_image_base64(path):
-    if path and os.path.exists(path):
-        with open(path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
-    return None
-
-flor_b64 = get_image_base64(find_image("flor"))
-logo_b64 = get_image_base64(find_image("logo"))
+# Intentar cargar las imágenes desde el repositorio
+flor_b64 = get_image_base64("flor")
+logo_b64 = get_image_base64("logo")
 
 # --- CSS PROFESIONAL DE ALTA GAMA ---
 st.markdown("""
@@ -73,7 +64,7 @@ p, span, div, a, li {
     line-height: 1.6;
 }
 
-/* BARRA DE NAVEGACIÓN ESTÁTICA / FIXED */
+/* BARRA DE NAVEGACIÓN FIXED */
 .nav-bar {
     display: flex;
     justify-content: space-between;
@@ -102,9 +93,9 @@ p, span, div, a, li {
 }
 .nav-links a:hover { color: var(--accent-gold) !important; }
 
-/* HERO SECTION - Refinado */
+/* HERO SECTION */
 .hero-section {
-    padding-top: 85px; /* Espacio para la nav fija */
+    padding-top: 85px;
     min-height: 90vh;
     display: flex;
     align-items: center;
@@ -118,7 +109,7 @@ p, span, div, a, li {
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
     color: var(--white) !important;
     margin-bottom: 25px;
     font-weight: 700;
@@ -136,7 +127,6 @@ p, span, div, a, li {
     color: var(--white) !important;
 }
 
-/* SECCIONES - Espacios acordes */
 .content-section {
     padding: 100px 10%;
     background-color: var(--white);
@@ -154,11 +144,10 @@ p, span, div, a, li {
     padding-bottom: 5px;
 }
 
-/* TARJETAS DE SERVICIO - Bordes y Sombras Sutiles */
 .service-card {
     background: var(--white);
     padding: 50px 40px;
-    border-radius: 4px; /* Bordes más rectos y profesionales */
+    border-radius: 4px;
     border: 1px solid #F0F0F0;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     height: 100%;
@@ -176,7 +165,6 @@ p, span, div, a, li {
     color: var(--primary-dark);
 }
 
-/* CONTACTO - Fondo Acorde */
 .contact-section {
     background-color: var(--primary-dark);
     color: var(--white);
@@ -205,7 +193,6 @@ p, span, div, a, li {
     width: 100%;
 }
 
-/* WhatsApp */
 .wa-btn {
     position: fixed; bottom: 40px; right: 40px;
     background: #25D366; width: 65px; height: 65px;
@@ -215,7 +202,7 @@ p, span, div, a, li {
 </style>
 """, unsafe_allow_html=True)
 
-# --- WHATSAPP ---
+# --- BOTÓN WHATSAPP ---
 st.markdown("""
 <a href="https://wa.me/573117199811" class="wa-btn" target="_blank">
     <svg width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.406.836 2.946 1.285 4.527 1.285 4.899 0 8.885-3.987 8.888-8.887.001-2.37-.922-4.599-2.598-6.275s-3.906-2.597-6.278-2.597c-4.9 0-8.887 3.987-8.889 8.888-.001 1.517.379 2.998 1.098 4.303l-.403 1.476 1.49-.391zm11.287-5.461c-.304-.152-1.799-.886-2.078-.987-.278-.101-.481-.152-.682.152-.201.304-.777.987-.951 1.189-.174.202-.348.228-.652.076-.304-.151-1.284-.474-2.446-1.511-.904-.806-1.513-1.802-1.69-2.105-.177-.303-.019-.467.133-.617.136-.135.304-.354.456-.531.152-.177.202-.304.304-.506.101-.203.051-.38-.025-.532-.076-.151-.682-1.644-.935-2.251-.246-.591-.497-.511-.682-.511h-.581c-.202 0-.531.076-.81.38-.278.303-1.062 1.037-1.062 2.529 0 1.492 1.087 2.934 1.239 3.136.152.202 2.14 3.268 5.183 4.579.724.312 1.29.499 1.731.639.728.231 1.39.198 1.912.12.583-.088 1.799-.734 2.052-1.442.253-.708.253-1.316.177-1.442-.076-.126-.278-.202-.582-.354z"/></svg>
@@ -244,7 +231,7 @@ st.markdown(f"""
 <div id="inicio" class="hero-section">
     <div style="padding: 0 10%;">
         <h1 class="hero-title">Consultoría Técnica de <br>Ingeniería Ambiental y SST</h1>
-        <p class="hero-subtitle">Optimizamos la operatividad de su empresa mediante gestion ambiental especializada y sistemas de seguridad laboral de alto rendimiento.</p>
+        <p class="hero-subtitle">Optimizamos la operatividad de su empresa mediante gestión ambiental especializada y sistemas de seguridad laboral de alto rendimiento.</p>
         <a href="#servicios" style="text-decoration:none; color:var(--primary-dark); background:var(--accent-gold); padding:20px 50px; border-radius:4px; font-weight:700; font-size:0.85rem; letter-spacing:2px; display:inline-block;">NUESTROS SERVICIOS</a>
     </div>
 </div>
@@ -268,11 +255,7 @@ with c_info:
     """, unsafe_allow_html=True)
 with c_logo:
     logo_img = f'<img src="data:image/png;base64,{logo_b64}" style="max-width:500px;">' if logo_b64 else "<h2>NARAVA</h2>"
-    st.markdown(f"""
-    <div style="background: #F8F8F8; padding: 0px; display: flex; justify-content: center; align-items: center; border-radius: 0px;">
-        {logo_img}
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f'<div style="display: flex; justify-content: center; align-items: center;">{logo_img}</div>', unsafe_allow_html=True)
 st.markdown('</section>', unsafe_allow_html=True)
 
 # --- SERVICIOS ---
@@ -300,21 +283,19 @@ for i in range(0, 6, 3):
                 <p style="color: var(--text-muted); font-size: 0.95rem;">{serv_data[idx][1]}</p>
             </div>
             """, unsafe_allow_html=True)
-    st.markdown('<div style="height:40px;"></div>', unsafe_allow_html=True)
 st.markdown('</section>', unsafe_allow_html=True)
 
 # --- CONTACTO ---
 st.markdown('<section id="contacto" class="contact-section">', unsafe_allow_html=True)
 con1, con2 = st.columns([1, 1], gap="large")
 with con1:
-    # SE ASEGURA COLOR BLANCO EXPLÍCITO PARA EL TEXTO SOBRE FONDO OSCURO
     st.markdown("""
-    <h2 style="color:white !important; font-size:3.5rem; line-height:1; margin-bottom:30px; font-family:'Playfair Display', serif;">CONTACTANOS</h2>
+    <h2 style="color:white !important; font-size:3.5rem; line-height:1; margin-bottom:30px;">CONTACTANOS</h2>
     <p style="color:white !important; opacity:0.8; font-size:1.1rem; margin-bottom:40px;">Nuestros consultores expertos están listos para analizar su caso.</p>
-    <div style="font-size:1rem; opacity:0.9; color:white !important;">
-        <p style="margin-bottom:15px; color:white !important;"><b>DIRECCIÓN:</b> Medellín, Antioquia.</p>
-        <p style="margin-bottom:15px; color:white !important;"><b>CORREO:</b> gerencianarava@gmail.com</p>
-        <p style="color:white !important;"><b>TELÉFONO:</b> +57 311 719 9811</p>
+    <div style="font-size:1rem; color:white !important;">
+        <p style="margin-bottom:15px;"><b>DIRECCIÓN:</b> Medellín, Antioquia.</p>
+        <p style="margin-bottom:15px;"><b>CORREO:</b> gerencianarava@gmail.com</p>
+        <p><b>TELÉFONO:</b> +57 311 719 9811</p>
     </div>
     """, unsafe_allow_html=True)
 with con2:
