@@ -4,7 +4,7 @@
 # -----------------------------------------------------------------------
 
 import streamlit as st
-import base64
+import pandas as pd
 import os
 
 # Configuración de la página con estilo profesional
@@ -335,3 +335,4 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
