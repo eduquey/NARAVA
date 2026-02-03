@@ -405,7 +405,7 @@ serv_data = [
         "📈",
     ),
     ("Asesoría Jurídica", "Blindaje legal ambiental para proyectos de gran escala.", "⚖️"),
-    ("Certificados Verdes", "validacion de la sostenibilidad, eficiencia y responsabilidad ambiental de edificios, productos o empresas", "🍃"),
+    ("Certificados Verdes", "Sostenibilidad, eficiencia y responsabilidad ambiental de edificios, productos o empresas", "🍃"),
     ("Interventoría", "Supervisión técnica de alta precisión en proyectos críticos.", "🏗️")
 ]
 
@@ -456,5 +456,6 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
 
 
