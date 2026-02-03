@@ -3,9 +3,11 @@
 # 2. Ejecutar la Web:    python -m streamlit run app.py
 # -----------------------------------------------------------------------
 
+import base64
+import os
+
 import streamlit as st
 import pandas as pd
-import os
 
 # Configuración de la página con estilo profesional
 st.set_page_config(
@@ -17,15 +19,19 @@ st.set_page_config(
 
 # --- UTILIDADES PARA IMÁGENES ---
 def find_image(name):
-    base_folder = r"C:\Users\LENOVO\OneDrive\Escritorio\NARAVA\Proyecto_Narava"
-    paths = [
-        os.path.join(base_folder, f"{name}.png"),
-        os.path.join(base_folder, f"{name}.jpg"),
-        os.path.join(base_folder, "logo.png") if name == "logo" else None
-    ]
-    for path in paths:
-        if path and os.path.exists(path):
-            return path
+    base_folder = os.path.dirname(__file__)
+    candidates = {
+        f"{name}.png",
+        f"{name}.jpg",
+        f"{name}.jpeg",
+    }
+    if name == "logo":
+        candidates.update({"logo.png", "logo.jpg", "logo.jpeg"})
+    existing = {entry.lower(): entry for entry in os.listdir(base_folder)}
+    for candidate in candidates:
+        match = existing.get(candidate.lower())
+        if match:
+            return os.path.join(base_folder, match)
     return None
 
 def get_image_base64(path):
