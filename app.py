@@ -399,7 +399,11 @@ st.markdown('<div style="text-align:center; margin-bottom:70px;"><span class="la
 serv_data = [
     ("Gestión Ambiental", "Tramitología especializada ante autoridades regionales y nacionales.", "🌿"),
     ("Seguridad Laboral", "Sistemas SG-SST enfocados en la protección del capital humano.", "🛡️"),
-    ("Sostenibilidad ESG", "Estrategias de impacto ambiental, social y de gobernanza.", "📈"),
+    (
+        "Gestión de Calidad",
+        "Sistemas de Gestión de Calidad (SGC), aplicable a organizaciones de cualquier tamaño o sector",
+        "📈",
+    ),
     ("Asesoría Jurídica", "Blindaje legal ambiental para proyectos de gran escala.", "⚖️"),
     ("Diseño Paisajístico", "Fusión de arquitectura y ecosistemas naturales sostenibles.", "🍃"),
     ("Interventoría", "Supervisión técnica de alta precisión en proyectos críticos.", "🏗️")
