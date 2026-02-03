@@ -55,17 +55,6 @@ service_images = [
     get_image_base64(find_image("certificados verdes")),
     get_image_base64(find_image("interventoria", aliases=["interventoría"])),
 ]
-certification_data = [
-    ("Seguridad Industrial", ["casco seguridad", "seguridad industrial", "casco"]),
-    ("ISO 14001", ["iso 14001", "14001"]),
-    ("Responsabilidad Ambiental", ["responsabilidad ambiental", "balanza hojas", "balanza verde"]),
-    ("OHSAS 18001", ["ohsas 18001", "18001"]),
-    ("Sello Verde", ["sello verde", "certificado verde", "check verde"]),
-    ("ISO 9001:2015", ["iso 9001", "9001", "iso 9001 2015"]),
-]
-certification_images = [
-    get_image_base64(find_image(name, aliases=aliases)) for name, aliases in certification_data
-]
 
 # --- CSS PROFESIONAL DE ALTA GAMA ---
 st.markdown("""
@@ -240,35 +229,6 @@ p, span, div, a, li {
     color: var(--primary-dark);
 }
 
-.certifications-section {
-    padding: 100px 10%;
-    background: #f9faf7;
-    border-top: 1px solid #eee;
-}
-
-.cert-card {
-    background: var(--white);
-    border: 1px solid #f0f0f0;
-    border-radius: 4px;
-    padding: 40px 30px;
-    text-align: center;
-    transition: 0.3s ease;
-    height: 100%;
-}
-
-.cert-card:hover {
-    border-color: var(--accent-gold);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-    transform: translateY(-4px);
-}
-
-.cert-image {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    margin-bottom: 20px;
-}
-
 /* CONTACTO - Fondo Acorde */
 .contact-section {
     background-color: var(--primary-dark);
@@ -366,8 +326,7 @@ p, span, div, a, li {
 
 @media (max-width: 1024px) {
     .content-section,
-    .contact-section,
-    .certifications-section {
+    .contact-section {
         padding: 80px 6%;
     }
 
@@ -419,8 +378,7 @@ p, span, div, a, li {
     }
 
     .content-section,
-    .contact-section,
-    .certifications-section {
+    .contact-section {
         padding: 70px 6%;
     }
 
@@ -458,8 +416,7 @@ p, span, div, a, li {
     }
 
     .content-section,
-    .contact-section,
-    .certifications-section {
+    .contact-section {
         padding: 60px 7%;
     }
 }
@@ -558,43 +515,6 @@ for i in range(0, 6, 3):
             </div>
             """, unsafe_allow_html=True)
     st.markdown('<div style="height:40px;"></div>', unsafe_allow_html=True)
-st.markdown('</section>', unsafe_allow_html=True)
-
-# --- CERTIFICACIONES ---
-st.markdown('<section class="certifications-section">', unsafe_allow_html=True)
-st.markdown(
-    '<div style="text-align:center; margin-bottom:70px;"><span class="label-luxury">Confianza y Cumplimiento</span><h2 style="font-size:3rem;">Certificaciones y Normas</h2></div>',
-    unsafe_allow_html=True,
-)
-
-for i in range(0, len(certification_data), 3):
-    cols = st.columns(3, gap="large")
-    for j in range(3):
-        idx = i + j
-        if idx >= len(certification_data):
-            continue
-        title = certification_data[idx][0]
-        image_b64 = certification_images[idx]
-        with cols[j]:
-            image_tag = (
-                f'<img src="data:image/png;base64,{image_b64}" class="cert-image" alt="{title}">'
-                if image_b64
-                else '<div class="cert-image" style="font-size:2rem; display:flex; align-items:center; justify-content:center;">✅</div>'
-            )
-            st.markdown(
-                f"""
-                <div class="cert-card">
-                    {image_tag}
-                    <h3 style="font-size: 1.2rem; margin-bottom: 10px;">{title}</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">
-                        Respaldamos procesos con estándares reconocidos en calidad, ambiente y seguridad.
-                    </p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-    st.markdown('<div style="height:30px;"></div>', unsafe_allow_html=True)
-
 st.markdown('</section>', unsafe_allow_html=True)
 
 # --- CONTACTO ---
