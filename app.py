@@ -233,6 +233,34 @@ p, span, div, a, li {
     border: 1px solid rgba(255,255,255,0.08);
 }
 
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    color: var(--white) !important;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.social-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 1024px) {
     .content-section,
     .contact-section {
@@ -436,6 +464,14 @@ with con1:
         <p style="margin-bottom:15px; color:white !important;"><b>DIRECCIÓN:</b> Medellín, Antioquia.</p>
         <p style="margin-bottom:15px; color:white !important;"><b>CORREO:</b> gerencianarava@gmail.com</p>
         <p style="color:white !important;"><b>TELÉFONO:</b> +57 311 719 9811 // +57 310 476 10 83</p>
+    </div>
+    <div class="social-buttons">
+        <a class="social-btn" href="https://www.linkedin.com/company/naravaservicios" target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+        </a>
+        <a class="social-btn" href="https://www.instagram.com/narava.amb" target="_blank" rel="noopener noreferrer">
+            <span>Instagram</span>
+        </a>
     </div>
     """, unsafe_allow_html=True)
 with con2:
