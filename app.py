@@ -218,6 +218,117 @@ p, span, div, a, li {
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 9999;
 }
+
+.logo-image {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.contact-form {
+    background: rgba(255,255,255,0.03);
+    padding: 50px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+@media (max-width: 1024px) {
+    .content-section,
+    .contact-section {
+        padding: 80px 6%;
+    }
+
+    .nav-bar {
+        padding: 0 5%;
+    }
+
+    .nav-links {
+        gap: 24px;
+    }
+
+    .service-card {
+        padding: 40px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-bar {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 6%;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-bottom: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-section {
+        padding-top: 140px;
+        min-height: auto;
+        padding-bottom: 80px;
+    }
+
+    .hero-title {
+        font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .content-section,
+    .contact-section {
+        padding: 70px 6%;
+    }
+
+    .service-card {
+        padding: 32px 24px;
+    }
+
+    .contact-form {
+        padding: 30px;
+    }
+
+    .wa-btn {
+        width: 52px;
+        height: 52px;
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        justify-content: flex-start;
+    }
+
+    .hero-section {
+        padding-top: 160px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .content-section,
+    .contact-section {
+        padding: 60px 7%;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -273,7 +384,7 @@ with c_info:
     </ul>
     """, unsafe_allow_html=True)
 with c_logo:
-    logo_img = f'<img src="data:image/png;base64,{logo_b64}" style="max-width:500px;">' if logo_b64 else "<h2>NARAVA</h2>"
+    logo_img = f'<img src="data:image/png;base64,{logo_b64}" class="logo-image">' if logo_b64 else "<h2>NARAVA</h2>"
     st.markdown(f"""
     <div style="background: #F8F8F8; padding: 0px; display: flex; justify-content: center; align-items: center; border-radius: 0px;">
         {logo_img}
@@ -325,7 +436,7 @@ with con1:
     """, unsafe_allow_html=True)
 with con2:
     st.markdown("""
-    <div style="background: rgba(255,255,255,0.03); padding: 50px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08);">
+    <div class="contact-form">
         <form action="https://formsubmit.co/gerencianarava@gmail.com" method="POST">
             <input type="text" name="name" placeholder="Nombre y Apellidos" required class="contact-input">
             <input type="email" name="email" placeholder="Correo Corporativo" required class="contact-input">
