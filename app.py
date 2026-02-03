@@ -245,7 +245,7 @@ p, span, div, a, li {
     align-items: center;
     gap: 10px;
     padding: 12px 18px;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid transparent;
     border-radius: 999px;
     color: var(--white) !important;
     text-decoration: none;
@@ -259,6 +259,22 @@ p, span, div, a, li {
     border-color: var(--accent-gold);
     color: var(--accent-gold) !important;
     transform: translateY(-2px);
+}
+
+.social-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.social-btn--linkedin {
+    background: #0A66C2;
+    box-shadow: 0 10px 24px rgba(10, 102, 194, 0.35);
+}
+
+.social-btn--instagram {
+    background: radial-gradient(circle at 30% 110%, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%);
+    box-shadow: 0 10px 24px rgba(214, 41, 118, 0.35);
 }
 
 @media (max-width: 1024px) {
@@ -466,10 +482,16 @@ with con1:
         <p style="color:white !important;"><b>TELÉFONO:</b> +57 311 719 9811 // +57 310 476 10 83</p>
     </div>
     <div class="social-buttons">
-        <a class="social-btn" href="https://www.linkedin.com/company/naravaservicios" target="_blank" rel="noopener noreferrer">
+        <a class="social-btn social-btn--linkedin" href="https://www.linkedin.com/company/naravaservicios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.602 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
             <span>LinkedIn</span>
         </a>
-        <a class="social-btn" href="https://www.instagram.com/narava.amb" target="_blank" rel="noopener noreferrer">
+        <a class="social-btn social-btn--instagram" href="https://www.instagram.com/narava.amb" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zm9.25 2.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+            </svg>
             <span>Instagram</span>
         </a>
     </div>
