@@ -42,6 +42,14 @@ def get_image_base64(path):
 
 flor_b64 = get_image_base64(find_image("flor"))
 logo_b64 = get_image_base64(find_image("logo"))
+service_images = [
+    get_image_base64(find_image("1")),
+    get_image_base64(find_image("2")),
+    get_image_base64(find_image("3")),
+    get_image_base64(find_image("1")),
+    get_image_base64(find_image("2")),
+    get_image_base64(find_image("3")),
+]
 
 # --- CSS PROFESIONAL DE ALTA GAMA ---
 st.markdown("""
@@ -168,11 +176,45 @@ p, span, div, a, li {
     border: 1px solid #F0F0F0;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 .service-card:hover {
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
     border-color: var(--accent-gold);
     transform: translateY(-5px);
+}
+
+.service-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--service-image);
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(18, 35, 21, 0.2), rgba(184, 147, 82, 0.15));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.service-card:hover::after,
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .service-icon {
@@ -457,9 +499,11 @@ for i in range(0, 6, 3):
     cols = st.columns(3, gap="large")
     for j in range(3):
         idx = i + j
+        image_b64 = service_images[idx]
+        image_style = f"--service-image: url('data:image/jpeg;base64,{image_b64}');" if image_b64 else ""
         with cols[j]:
             st.markdown(f"""
-            <div class="service-card">
+            <div class="service-card" style="{image_style}">
                 <span class="service-icon">{serv_data[idx][2]}</span>
                 <h3 style="font-size: 1.6rem; margin-bottom:15px;">{serv_data[idx][0]}</h3>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">{serv_data[idx][1]}</p>
