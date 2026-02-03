@@ -5,6 +5,7 @@
 
 import base64
 import os
+import unicodedata
 
 import streamlit as st
 import pandas as pd
@@ -18,20 +19,24 @@ st.set_page_config(
 )
 
 # --- UTILIDADES PARA IMÁGENES ---
-def find_image(name):
+def normalize_image_key(value):
+    cleaned = unicodedata.normalize("NFKD", value)
+    cleaned = "".join(char for char in cleaned if not unicodedata.combining(char))
+    return cleaned.lower().replace("_", " ").replace("-", " ").strip()
+
+
+def find_image(name, aliases=None):
     base_folder = os.path.dirname(__file__)
-    candidates = {
-        f"{name}.png",
-        f"{name}.jpg",
-        f"{name}.jpeg",
-    }
-    if name == "logo":
-        candidates.update({"logo.png", "logo.jpg", "logo.jpeg"})
-    existing = {entry.lower(): entry for entry in os.listdir(base_folder)}
-    for candidate in candidates:
-        match = existing.get(candidate.lower())
-        if match:
-            return os.path.join(base_folder, match)
+    targets = [name]
+    if aliases:
+        targets.extend(aliases)
+    normalized_targets = {normalize_image_key(target) for target in targets}
+    for entry in os.listdir(base_folder):
+        base_name, extension = os.path.splitext(entry)
+        if extension.lower() not in {".png", ".jpg", ".jpeg"}:
+            continue
+        if normalize_image_key(base_name) in normalized_targets:
+            return os.path.join(base_folder, entry)
     return None
 
 def get_image_base64(path):
@@ -41,14 +46,14 @@ def get_image_base64(path):
     return None
 
 flor_b64 = get_image_base64(find_image("flor"))
-logo_b64 = get_image_base64(find_image("logo"))
+logo_b64 = get_image_base64(find_image("logo", aliases=["logo narava", "narava"]))
 service_images = [
-    get_image_base64(find_image("1")),
-    get_image_base64(find_image("2")),
-    get_image_base64(find_image("3")),
-    get_image_base64(find_image("1")),
-    get_image_base64(find_image("2")),
-    get_image_base64(find_image("3")),
+    get_image_base64(find_image("gestion ambiental", aliases=["gestión ambiental"])),
+    get_image_base64(find_image("seguridad laboral")),
+    get_image_base64(find_image("gestion de calidad", aliases=["gestión de calidad"])),
+    get_image_base64(find_image("asesoria juridica", aliases=["asesoría juridica", "asesoría jurídica"])),
+    get_image_base64(find_image("certificados verdes")),
+    get_image_base64(find_image("interventoria", aliases=["interventoría"])),
 ]
 
 # --- CSS PROFESIONAL DE ALTA GAMA ---
