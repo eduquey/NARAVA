@@ -443,7 +443,7 @@ with con2:
     <div class="contact-form">
         <form action="https://formsubmit.co/gerencianarava@gmail.com" method="POST">
             <input type="text" name="name" placeholder="Nombre y Apellidos" required class="contact-input">
-            <input type="email" name="email" placeholder="Correo Corporativo" required class="contact-input">
+            <input type="email" name="email" placeholder="Correo Electrónico" required class="contact-input">
             <textarea name="message" placeholder="Describa brevemente su requerimiento..." required class="contact-input" style="height:120px;"></textarea>
             <button type="submit" class="btn-luxury">SOLICITAR INFORMACIÓN</button>
         </form>
@@ -456,6 +456,7 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
 
 
 
