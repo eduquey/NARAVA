@@ -405,7 +405,7 @@ serv_data = [
         "📈",
     ),
     ("Asesoría Jurídica", "Blindaje legal ambiental para proyectos de gran escala.", "⚖️"),
-    ("Diseño Paisajístico", "Fusión de arquitectura y ecosistemas naturales sostenibles.", "🍃"),
+    ("Certificados Verdes", "validacion de la sostenibilidad, eficiencia y responsabilidad ambiental de edificios, productos o empresas", "🍃"),
     ("Interventoría", "Supervisión técnica de alta precisión en proyectos críticos.", "🏗️")
 ]
 
@@ -435,7 +435,7 @@ with con1:
     <div style="font-size:1rem; opacity:0.9; color:white !important;">
         <p style="margin-bottom:15px; color:white !important;"><b>DIRECCIÓN:</b> Medellín, Antioquia.</p>
         <p style="margin-bottom:15px; color:white !important;"><b>CORREO:</b> gerencianarava@gmail.com</p>
-        <p style="color:white !important;"><b>TELÉFONO:</b> +57 311 719 9811</p>
+        <p style="color:white !important;"><b>TELÉFONO:</b> +57 311 719 9811 // +57 310 476 10 83</p>
     </div>
     """, unsafe_allow_html=True)
 with con2:
@@ -456,4 +456,5 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
 
