@@ -551,26 +551,7 @@ serv_data = [
     ("Interventoría", "Supervisión técnica de alta precisión en proyectos críticos.", "🏗️")
 ]
 
-for i in range(0, 6, 3):
-    cols = st.columns(3, gap="large")
-    for j in range(3):
-        idx = i + j
-        image_b64, image_mime = service_images[idx]
-        image_style = (
-            f"--service-image: url('data:{image_mime};base64,{image_b64}');"
-            if image_b64 and image_mime
-            else ""
-        )
-        with cols[j]:
-            st.markdown(f"""
-            <div class="service-card" style="{image_style}">
-                <span class="service-icon">{serv_data[idx][2]}</span>
-                <h3 style="font-size: 1.6rem; margin-bottom:15px;">{serv_data[idx][0]}</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">{serv_data[idx][1]}</p>
-            </div>
-            """, unsafe_allow_html=True)
-    st.markdown('<div style="height:40px;"></div>', unsafe_allow_html=True)
-st.markdown('</section>', unsafe_allow_html=True)
+
 
 # --- CONTACTO ---
 st.markdown('<section id="contacto" class="contact-section">', unsafe_allow_html=True)
@@ -618,6 +599,7 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
 
 
 
