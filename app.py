@@ -527,15 +527,6 @@ st.markdown('</section>', unsafe_allow_html=True)
 st.markdown('<section id="servicios" class="content-section" style="background: #FDFDFD; border-top: 1px solid #EEE;">', unsafe_allow_html=True)
 st.markdown('<div style="text-align:center; margin-bottom:70px;"><span class="label-luxury">Portafolio Especializado</span><h2 style="font-size:3rem;">Nuestros Servicios</h2></div>', unsafe_allow_html=True)
 st.markdown("""
-<div class="download-links">
-    <a class="download-link" href="https://drive.google.com/file/d/1FwkGbCxYD-pjVXKtGSM8e83JMXQQ8dY5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-        📄 Brochure
-    </a>
-    <a class="download-link" href="https://drive.google.com/file/d/1lQIYuo6XIEW0E7eX2GOwujW3bMLV6UQ_/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-        🏢 Perfil Empresarial
-    </a>
-</div>
-""", unsafe_allow_html=True)
 
 serv_data = [
     ("Gestión Ambiental", "Tramitología especializada ante autoridades regionales y nacionales.", "🌿"),
@@ -549,6 +540,16 @@ serv_data = [
     ("Certificados Verdes", "Sostenibilidad, eficiencia y responsabilidad ambiental de edificios, productos o empresas", "🍃"),
     ("Interventoría", "Supervisión técnica de alta precisión en proyectos críticos.", "🏗️")
 ]
+
+<div class="download-links">
+    <a class="download-link" href="https://drive.google.com/file/d/1FwkGbCxYD-pjVXKtGSM8e83JMXQQ8dY5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        📄 Brochure
+    </a>
+    <a class="download-link" href="https://drive.google.com/file/d/1lQIYuo6XIEW0E7eX2GOwujW3bMLV6UQ_/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        🏢 Perfil Empresarial
+    </a>
+</div>
+""", unsafe_allow_html=True)
 
 for i in range(0, 6, 3):
     cols = st.columns(3, gap="large")
@@ -617,6 +618,7 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
 
 
 
