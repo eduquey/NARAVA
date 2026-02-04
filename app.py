@@ -199,6 +199,35 @@ p, span, div, a, li {
     transform: translateY(-5px);
 }
 
+/* ENLACES DE DESCARGA */
+.download-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: -40px auto 60px;
+}
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 4px;
+    border: 1px solid var(--accent-gold);
+    text-decoration: none;
+    color: var(--primary-dark) !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transition: 0.3s ease;
+}
+.download-link:hover {
+    background: var(--accent-gold);
+    color: var(--primary-dark) !important;
+    transform: translateY(-2px);
+}
+
 .service-card::after {
     content: "";
     position: absolute;
@@ -497,6 +526,16 @@ st.markdown('</section>', unsafe_allow_html=True)
 # --- SERVICIOS ---
 st.markdown('<section id="servicios" class="content-section" style="background: #FDFDFD; border-top: 1px solid #EEE;">', unsafe_allow_html=True)
 st.markdown('<div style="text-align:center; margin-bottom:70px;"><span class="label-luxury">Portafolio Especializado</span><h2 style="font-size:3rem;">Nuestros Servicios</h2></div>', unsafe_allow_html=True)
+st.markdown("""
+<div class="download-links">
+    <a class="download-link" href="https://drive.google.com/file/d/1FwkGbCxYD-pjVXKtGSM8e83JMXQQ8dY5/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        📄 Brochure
+    </a>
+    <a class="download-link" href="https://drive.google.com/file/d/1lQIYuo6XIEW0E7eX2GOwujW3bMLV6UQ_/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+        🏢 Perfil Empresarial
+    </a>
+</div>
+""", unsafe_allow_html=True)
 
 serv_data = [
     ("Gestión Ambiental", "Tramitología especializada ante autoridades regionales y nacionales.", "🌿"),
