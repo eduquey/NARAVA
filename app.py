@@ -578,7 +578,7 @@ con1, con2 = st.columns([1, 1], gap="large")
 with con1:
     # SE ASEGURA COLOR BLANCO EXPLÍCITO PARA EL TEXTO SOBRE FONDO OSCURO
     st.markdown("""
-    <h2 style="color:white !important; font-size:3.5rem; line-height:1; margin-bottom:30px; font-family:'Playfair Display', serif;">CONTACTANOS</h2>
+    <h2 style="color:white !important; font-size:3.5rem; line-height:1; margin-bottom:30px; font-family:'Playfair Display', serif;">CONTACTO:</h2>
     <p style="color:white !important; opacity:0.8; font-size:1.1rem; margin-bottom:40px;">Nuestros consultores expertos están listos para analizar su caso.</p>
     <div style="font-size:1rem; opacity:0.9; color:white !important;">
         <p style="margin-bottom:15px; color:white !important;"><b>DIRECCIÓN:</b> Medellín, Antioquia.</p>
@@ -618,6 +618,7 @@ st.markdown("""
     </div>
 </section>
 """, unsafe_allow_html=True)
+
 
 
 
