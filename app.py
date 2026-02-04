@@ -39,21 +39,30 @@ def find_image(name, aliases=None):
             return os.path.join(base_folder, entry)
     return None
 
-def get_image_base64(path):
+def get_image_payload(path):
     if path and os.path.exists(path):
+        _, extension = os.path.splitext(path)
+        extension = extension.lower()
+        if extension == ".png":
+            mime_type = "image/png"
+        elif extension in {".jpg", ".jpeg"}:
+            mime_type = "image/jpeg"
+        else:
+            mime_type = "application/octet-stream"
         with open(path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
-    return None
+            encoded = base64.b64encode(f.read()).decode()
+        return encoded, mime_type
+    return None, None
 
-flor_b64 = get_image_base64(find_image("flor"))
-logo_b64 = get_image_base64(find_image("logo", aliases=["logo narava", "narava"]))
+flor_b64, _ = get_image_payload(find_image("flor"))
+logo_b64, logo_mime = get_image_payload(find_image("logo", aliases=["logo narava", "narava"]))
 service_images = [
-    get_image_base64(find_image("gestion ambiental", aliases=["gestión ambiental"])),
-    get_image_base64(find_image("seguridad laboral")),
-    get_image_base64(find_image("gestion de calidad", aliases=["gestión de calidad"])),
-    get_image_base64(find_image("asesoria juridica", aliases=["asesoría juridica", "asesoría jurídica"])),
-    get_image_base64(find_image("certificados verdes")),
-    get_image_base64(find_image("interventoria", aliases=["interventoría"])),
+    get_image_payload(find_image("gestion ambiental", aliases=["gestión ambiental"])),
+    get_image_payload(find_image("seguridad laboral")),
+    get_image_payload(find_image("gestion de calidad", aliases=["gestión de calidad"])),
+    get_image_payload(find_image("asesoria juridica", aliases=["asesoría juridica", "asesoría jurídica"])),
+    get_image_payload(find_image("certificados verdes")),
+    get_image_payload(find_image("interventoria", aliases=["interventoría"])),
 ]
 
 # --- CSS PROFESIONAL DE ALTA GAMA ---
@@ -476,7 +485,8 @@ with c_info:
     </ul>
     """, unsafe_allow_html=True)
 with c_logo:
-    logo_img = f'<img src="data:image/png;base64,{logo_b64}" class="logo-image">' if logo_b64 else "<h2>NARAVA</h2>"
+    logo_src = f"data:{logo_mime};base64,{logo_b64}" if logo_b64 and logo_mime else None
+    logo_img = f'<img src="{logo_src}" class="logo-image">' if logo_src else "<h2>NARAVA</h2>"
     st.markdown(f"""
     <div style="background: #F8F8F8; padding: 0px; display: flex; justify-content: center; align-items: center; border-radius: 0px;">
         {logo_img}
@@ -505,8 +515,12 @@ for i in range(0, 6, 3):
     cols = st.columns(3, gap="large")
     for j in range(3):
         idx = i + j
-        image_b64 = service_images[idx]
-        image_style = f"--service-image: url('data:image/jpeg;base64,{image_b64}');" if image_b64 else ""
+        image_b64, image_mime = service_images[idx]
+        image_style = (
+            f"--service-image: url('data:{image_mime};base64,{image_b64}');"
+            if image_b64 and image_mime
+            else ""
+        )
         with cols[j]:
             st.markdown(f"""
             <div class="service-card" style="{image_style}">
